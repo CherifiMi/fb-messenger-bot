@@ -30,11 +30,13 @@ func main() {
 	})
 
 	router.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "mito hi")
+		c.JSON(http.StatusOK, gin.H{
+			"mito": "nyx",
+		})
 	})
 
 	//port := os.Getenv("HTTP_PLATFORM_PORT")
-	port := os.Getenv("PORT")
+	port := os.Getenv("HTTP_PLATFORM_PORT")
 
 	// default back to 8080 for local dev
 	if port == "" {
