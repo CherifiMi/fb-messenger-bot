@@ -34,7 +34,7 @@ func main() {
 		c.String(http.StatusOK, "EVENT_RECEIVED")
 	})
 
-	router.GET("/test", func(c *gin.Context) {
+	router.GET("", func(c *gin.Context) {
 		c.String(http.StatusOK, "mito hi")
 	})
 
