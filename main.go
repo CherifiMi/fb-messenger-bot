@@ -2,11 +2,11 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 	"os"
 )
 
-const PAGE_ACCESS_TOKEN = "EAARQbeXy1gsBO6mc42B2gGTiupf01XUAzRobv7rGVPbNMZCT33yXULtrtxyZBxyIZBmZAlKUKRu2tGuOWNIFkNdedU2VbnKDPZCZCKptUtEhWN2oYezwOtbpXJZBms3XX0ZCuI1iUkPyM6YPGrdfAWUewZAbCCjidvJZCWaNz4NWAO14XxFZC2on9FI1JZB6rvWLaeIbiwZDZD"
 const VERIFY_TOKEN = "mito2003"
 
 func main() {
@@ -27,12 +27,12 @@ func main() {
 	router.POST("/webhook", func(c *gin.Context) {
 		// Handle incoming messages here
 		c.String(http.StatusOK, "EVENT_RECEIVED")
+		log.Println("EVENT_RECEIVED")
 	})
 
 	router.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"mito": "nyx",
-		})
+		c.JSON(http.StatusOK, gin.H{"mito": "nyx"})
+		log.Println("MITOOOOOOOOOOOOOOOOOOOOOOOOOOO LOGS")
 	})
 
 	//port := os.Getenv("HTTP_PLATFORM_PORT")
