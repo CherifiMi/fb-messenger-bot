@@ -38,7 +38,8 @@ func main() {
 		c.String(http.StatusOK, "mito hi")
 	})
 
-	port := os.Getenv("HTTP_PLATFORM_PORT")
+	//port := os.Getenv("HTTP_PLATFORM_PORT")
+	port := os.Getenv("PORT")
 
 	// default back to 8080 for local dev
 	if port == "" {
