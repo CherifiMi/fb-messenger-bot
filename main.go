@@ -6,21 +6,18 @@ import (
 	"os"
 )
 
-func main() {
-	//err := godotenv.Load()
-	//if err != nil {
-	//	log.Fatalf("Error loading .env file")
-	//}
+const PAGE_ACCESS_TOKEN = "EAARQbeXy1gsBO6mc42B2gGTiupf01XUAzRobv7rGVPbNMZCT33yXULtrtxyZBxyIZBmZAlKUKRu2tGuOWNIFkNdedU2VbnKDPZCZCKptUtEhWN2oYezwOtbpXJZBms3XX0ZCuI1iUkPyM6YPGrdfAWUewZAbCCjidvJZCWaNz4NWAO14XxFZC2on9FI1JZB6rvWLaeIbiwZDZD"
+const VERIFY_TOKEN = "mito2003"
 
+func main() {
 	router := gin.Default()
 
 	router.GET("/webhook", func(c *gin.Context) {
-		verifyToken := os.Getenv("VERIFY_TOKEN")
 		mode := c.Query("hub.mode")
 		token := c.Query("hub.verify_token")
 		challenge := c.Query("hub.challenge")
 
-		if mode == "subscribe" && token == verifyToken {
+		if mode == "subscribe" && token == VERIFY_TOKEN {
 			c.String(http.StatusOK, challenge)
 		} else {
 			c.String(http.StatusForbidden, "Forbidden")
@@ -32,7 +29,7 @@ func main() {
 		c.String(http.StatusOK, "EVENT_RECEIVED")
 	})
 
-	router.GET("", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		c.String(http.StatusOK, "mito hi")
 	})
 
