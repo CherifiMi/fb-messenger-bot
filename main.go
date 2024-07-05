@@ -38,14 +38,6 @@ type Message struct {
 		} `json:"messaging"`
 	} `json:"entry"`
 }
-type SendMessage struct {
-	Recipient struct {
-		ID string `json:"id"`
-	} `json:"recipient"`
-	Message struct {
-		Text string `json:"text"`
-	} `json:"message"`
-}
 
 func main() {
 	router := gin.Default()
@@ -106,16 +98,38 @@ func mitoHandler(c *gin.Context) {
 }
 
 func sendMessage(recipientID, text string) {
-	message := SendMessage{
+
+	suggestions := []string{"What is the date?", "Hi"}
+
+	buttons := make([]interface{}, len(suggestions))
+	for i, suggestion := range suggestions {
+		buttons[i] = map[string]interface{}{
+			"type":    "postback",
+			"title":   suggestion,
+			"payload": suggestion,
+		}
+	}
+
+	message := struct {
+		Recipient struct {
+			ID string `json:"id"`
+		} `json:"recipient"`
+		Message struct {
+			Text         string        `json:"text"`
+			QuickReplies []interface{} `json:"quick_replies,omitempty"`
+		} `json:"message"`
+	}{
 		Recipient: struct {
 			ID string `json:"id"`
 		}{
 			ID: recipientID,
 		},
 		Message: struct {
-			Text string `json:"text"`
+			Text         string        `json:"text"`
+			QuickReplies []interface{} `json:"quick_replies,omitempty"`
 		}{
-			Text: text,
+			Text:         text,
+			QuickReplies: buttons,
 		},
 	}
 
