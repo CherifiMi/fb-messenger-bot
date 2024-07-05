@@ -99,14 +99,15 @@ func mitoHandler(c *gin.Context) {
 
 func sendMessage(recipientID, text string) {
 
-	suggestions := []string{"What is the date?", "Hi"}
+	suggestions := []string{"What is the date?", "Hi", "MITO"}
 
 	buttons := make([]interface{}, len(suggestions))
 	for i, suggestion := range suggestions {
 		buttons[i] = map[string]interface{}{
-			"type":    "postback",
-			"title":   suggestion,
-			"payload": suggestion,
+			"content_type": "text",
+			"title":        suggestion,
+			"payload":      suggestion,
+			"image_url":    "http://example.com/img/red.png",
 		}
 	}
 
@@ -115,8 +116,8 @@ func sendMessage(recipientID, text string) {
 			ID string `json:"id"`
 		} `json:"recipient"`
 		Message struct {
-			Text string `json:"text"`
-			//QuickReplies []interface{} `json:"quick_replies,omitempty"`
+			Text         string        `json:"text"`
+			QuickReplies []interface{} `json:"quick_replies"`
 		} `json:"message"`
 	}{
 		Recipient: struct {
@@ -125,11 +126,11 @@ func sendMessage(recipientID, text string) {
 			ID: recipientID,
 		},
 		Message: struct {
-			Text string `json:"text"`
-			//QuickReplies []interface{} `json:"quick_replies,omitempty"`
+			Text         string        `json:"text"`
+			QuickReplies []interface{} `json:"quick_replies"`
 		}{
-			Text: text,
-			//QuickReplies: buttons,
+			Text:         text,
+			QuickReplies: buttons,
 		},
 	}
 
