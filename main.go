@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -79,7 +78,7 @@ func receiveMessage(c *gin.Context) {
 				case "hi":
 					sendMessage(messaging.Sender.ID, "Hello")
 				default:
-					sendMessage(messaging.Sender.ID, fmt.Sprintf("echo: %q", messaging.Message))
+					sendMessage(messaging.Sender.ID, messaging.Message.Text)
 				}
 			}
 		}
