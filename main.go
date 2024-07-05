@@ -115,8 +115,8 @@ func sendMessage(recipientID, text string) {
 			ID string `json:"id"`
 		} `json:"recipient"`
 		Message struct {
-			Text         string        `json:"text"`
-			QuickReplies []interface{} `json:"quick_replies,omitempty"`
+			Text string `json:"text"`
+			//QuickReplies []interface{} `json:"quick_replies,omitempty"`
 		} `json:"message"`
 	}{
 		Recipient: struct {
@@ -125,11 +125,11 @@ func sendMessage(recipientID, text string) {
 			ID: recipientID,
 		},
 		Message: struct {
-			Text         string        `json:"text"`
-			QuickReplies []interface{} `json:"quick_replies,omitempty"`
+			Text string `json:"text"`
+			//QuickReplies []interface{} `json:"quick_replies,omitempty"`
 		}{
-			Text:         text,
-			QuickReplies: buttons,
+			Text: text,
+			//QuickReplies: buttons,
 		},
 	}
 
