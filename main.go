@@ -107,7 +107,6 @@ func sendMessage(recipientID, text string) {
 			"content_type": "text",
 			"title":        suggestion,
 			"payload":      suggestion,
-			"image_url":    "http://example.com/img/red.png",
 		}
 	}
 
