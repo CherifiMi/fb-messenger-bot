@@ -99,31 +99,30 @@ func mitoHandler(c *gin.Context) {
 
 func sendMessage(recipientID, text string) {
 
-	suggestions := map[string]string{
-		"What is the date?": "date",
-		"Say Hi":            "hi",
-		"MITO":              "mito",
-	}
-
-	buttons := make([]interface{}, len(suggestions))
-	for title, payload := range suggestions {
-		button := map[string]interface{}{
-			"content_type": "text",
-			"title":        title,
-			"payload":      payload,
-		}
-		buttons = append(buttons, button)
-	}
-
-	//suggestions := []string{"What is the date?", "Hi", "MITO"}
-	//buttons := make([]interface{}, len(suggestions))
-	//for i, suggestion := range suggestions {
-	//	buttons[i] = map[string]interface{}{
-	//		"content_type": "text",
-	//		"title":        suggestion,
-	//		"payload":      suggestion,
-	//	}
+	//suggestions := map[string]string{
+	//	"What is the date?": "date",
+	//	"Say Hi":            "hi",
+	//	"MITO":              "mito",
 	//}
+	//buttons := make([]interface{}, len(suggestions))
+	//for title, payload := range suggestions {
+	//	button := map[string]interface{}{
+	//		"content_type": "text",
+	//		"title":        title,
+	//		"payload":      payload,
+	//	}
+	//	buttons = append(buttons, button)
+	//}
+
+	suggestions := []string{"What is the date?", "Hi", "MITO"}
+	buttons := make([]interface{}, len(suggestions))
+	for i, suggestion := range suggestions {
+		buttons[i] = map[string]interface{}{
+			"content_type": "text",
+			"title":        suggestion,
+			"payload":      "date",
+		}
+	}
 
 	message := struct {
 		Recipient struct {
